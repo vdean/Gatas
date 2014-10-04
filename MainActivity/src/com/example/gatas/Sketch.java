@@ -24,6 +24,40 @@ class Data
     }
 }
 
+
+public class Ball
+{
+    point Position;
+    velocity velocity;
+    float Radius;
+    boolean IsBlack;
+    boolean IsBotSide;
+    boolean IsInPocket;
+    boolean IsPickedUp;
+    
+    public Ball(boolean black){
+        Position = new point(Constants.startx, Constants.starty); // Define startx starty
+        Velocity = new velocity(0.0,0.0);
+        Radius = Constants.radius;
+        IsBlack = black;
+        IsBotSide = true;
+        
+        if(IsBlack){
+            IsBotSide = false;
+        }
+        
+        IsInPocket = false;
+        IsPicketUp = false;
+    }
+    
+}
+public class velocity
+{
+    public velocity(float initx, float inity){
+        
+    }
+}
+
 public class Sketch extends View implements OnTouchListener {
 
     private float width;    // width of one tile
