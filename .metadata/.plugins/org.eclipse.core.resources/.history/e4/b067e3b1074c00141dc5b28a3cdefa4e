@@ -13,7 +13,6 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
-import android.os.SystemClock;
 
 class Point
 {
@@ -41,37 +40,29 @@ class Point
 
 public class Ball
 {
-    Point position;
-    Velocity velocity;
-    float radius;
-    boolean isBlack;
-    boolean isBotSide;
-    boolean isInPocket;
-    boolean isPickedUp;
-    long lastTimeUpdatedMs;
+    point Position;
+    velocity velocity;
+    float Radius;
+    boolean IsBlack;
+    boolean IsBotSide;
+    boolean IsInPocket;
+    boolean IsPickedUp;
     
     public Ball(boolean black) {
-        this.position = new Point(Constants.startX, Constants.startY); // Define startx starty
-        this.velocity = new Velocity(0.0,0.0);
-        this.radius = Constants.radius;
-        this.isBlack = black;
-        this.isBotSide = true;
-        this.lastTimeUpdatedMs = SystemClock.elapsedRealtime();
+        position = new Point(Constants.startx, Constants.starty); // Define startx starty
+        velocity = new Velocity(0.0,0.0);
+        Radius = Constants.radius;
+        IsBlack = black;
+        IsBotSide = true;
         
-        if(isBlack){
-            isBotSide = false;
+        if(IsBlack){
+            IsBotSide = false;
         }
         
-        this.isInPocket = false;
-        this.isPickedUp = false;
+        IsInPocket = false;
+        IsPicketUp = false;
     }
     
-    void updatePosition() {
-    	long delta_t = SystemClock.elapsedRealtime() - this.lastTimeUpdatedMs;
-    	this.position.set(this.position.x+delta_t * this.velocity.xVel,
-    			this.position.y + delta_t * this.velocity.yVel);
-    	this.lastTimeUpdatedMs = SystemClock.elapsedRealtime();
-    }
 }
 public class Velocity
 {
@@ -85,12 +76,8 @@ public class Velocity
      
     }
     
-    public void collisionWithBall(float otherXVel, float otherYVel, point distance, point otherDistance){
-        float cosTheta = (distance.x * xVel + distance.y * yVel)/(sqrt(distance.x^2 + distance.y^2) * sqrt(xVel^2 + yVel^2)));
-        float cosPhi = (otherDistance.x * otherXVel + otherDistance.y * otherYVel)/(sqrt(otherDistance.x^2 + otherDistance.y^2) * sqrt(otherXVel^2 + otherYVel^2)));
-    
-    	xVel = otherXVel * cosPhi/cosTheta;
-    	yVel = otherYVel * cosPhi/cosTheta;
+    public void collisionWithBall(float otherXVel, float otherYVel){
+        
     }
     
     public void collisionWithWall(boolean isVertWall){
@@ -99,11 +86,6 @@ public class Velocity
      }   
      else{
          yVel = -yVel;
-     }
-     
-     public void collisionWithPocket(){
-     	xVel = 0;
-     	yVel = 0;
      }
     }
     
