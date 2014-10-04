@@ -67,6 +67,13 @@ public class Ball
             isBotSide = false;
         }
         
+        if(isBlack){
+            this.distance = new Point(Constants.startBlackX - Constants.startWhiteX, Constants.startBlackY - Constants.startWhiteY);
+        }
+        else{
+            this.distance = new Point(Constants.startWhiteX - Constants.startBlackX, Constants.startWhiteY - Constants.startBlackY);
+        }
+        
         this.isInPocket = false;
         this.isPickedUp = false;
     }
@@ -78,7 +85,6 @@ public class Ball
     	this.lastTimeUpdatedMs = SystemClock.elapsedRealtime();
     }
 }
-
 public class Velocity
 {
     
@@ -91,12 +97,8 @@ public class Velocity
      
     }
     
-    public void collisionWithBall(float otherXVel, float otherYVel, point distance, point otherDistance){
-        float cosTheta = (distance.x * xVel + distance.y * yVel)/(sqrt(distance.x^2 + distance.y^2) * sqrt(xVel^2 + yVel^2)));
-        float cosPhi = (otherDistance.x * otherXVel + otherDistance.y * otherYVel)/(sqrt(otherDistance.x^2 + otherDistance.y^2) * sqrt(otherXVel^2 + otherYVel^2)));
-    
-    	xVel = otherXVel * cosPhi/cosTheta;
-    	yVel = otherYVel * cosPhi/cosTheta;
+    public void collisionWithBall(float otherXVel, float otherYVel){
+        
     }
     
     public void collisionWithWall(boolean isVertWall){
@@ -106,17 +108,11 @@ public class Velocity
      else{
          yVel = -yVel;
      }
-     
-     public void collisionWithPocket(){
-     	xVel = 0;
-     	yVel = 0;
-     }
     }
     
 }
 
-
-public class Game extends View implements OnTouchListener {
+/*public class Game extends View implements OnTouchListener {
 
     private float width;    // width of one tile
     private float height;   // height of one tile
@@ -210,4 +206,4 @@ public class Game extends View implements OnTouchListener {
         invalidate();
         return true; // indicate event was handled
     }
-}
+}*/
