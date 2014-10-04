@@ -38,15 +38,13 @@ class Point
     }
     
     float distanceTo(Point p) {
-    	return FloatMath.sqrt(FloatMath.pow((p.x-this.x),2) + 
-    			FloatMath.pow((p.y-this.y),2));
+    	return FloatMath.sqrt(FloatMath.pow((p.x-this.x),2) + FloatMath.pow((p.y-this.y),2));
     }
 }
 
 public class Ball
 {
     Point position;
-    Point distance;
     Velocity velocity;
     float radius;
     boolean isBlack;
@@ -56,7 +54,7 @@ public class Ball
     long lastTimeUpdatedMs;
     
     public Ball(boolean black) {
-        this.position = new Point(Constants.startWhiteX, Constants.startWhiteY); // Define startx starty
+        this.position = new Point(Constants.startX, Constants.startY); // Define startx starty
         this.velocity = new Velocity(0.0,0.0);
         this.radius = Constants.radius;
         this.isBlack = black;
@@ -65,13 +63,6 @@ public class Ball
         
         if(isBlack){
             isBotSide = false;
-        }
-        
-        if(isBlack){
-            this.distance = new Point(Constants.startBlackX - Constants.startWhiteX, Constants.startBlackY - Constants.startWhiteY);
-        }
-        else{
-            this.distance = new Point(Constants.startWhiteX - Constants.startBlackX, Constants.startWhiteY - Constants.startBlackY);
         }
         
         this.isInPocket = false;

@@ -25,8 +25,8 @@ public interface Constants extends BaseColumns{
     public static final Point pocket4= new Point(tableWidth, tableLength);
     public static final Point pocket5= new Point(tableWidth, tableLength/2);
     public static final Point pocket6= new Point(tableWidth, 0f);
-    public static final float radius = 5f;//define radius
-    public static final float deceleration = 0.5f;//Define deceleration/friction constant
+    public static final float radius = //define radius
+    public static final float deceleration = //Define deceleration/friction constant
     
     
 
