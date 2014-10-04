@@ -36,7 +36,7 @@ public class Sketch extends View implements OnTouchListener {
     {
         background = new Paint();
         //background.setStyle(Paint.Style.FILL_AND_STROKE);
-        background.setColor(0xffcfffff);
+        background.setColor(0xff33cc33);
 
         translucentRedPen = new Paint();
         translucentRedPen.setColor(getResources().getColor(R.color.translucentRedPen));
