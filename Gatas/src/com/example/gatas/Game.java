@@ -53,7 +53,6 @@ public class Ball
     
     public Ball(boolean black) {
         this.position = new Point(Constants.startWhiteX, Constants.startWhiteY); // Define startx starty
-        this.distance = new Point(Constants.startWhiteX - Constants.startBlackX, Constants.startWhiteY - Constants.startBlackY)
         this.velocity = new Velocity(0.0,0.0);
         this.radius = Constants.radius;
         this.isBlack = black;
@@ -62,6 +61,13 @@ public class Ball
         
         if(isBlack){
             isBotSide = false;
+        }
+        
+        if(isBlack){
+            this.distance = new Point(Constants.startBlackX - Constants.startWhiteX, Constants.startBlackY - Constants.startWhiteY);
+        }
+        else{
+            this.distance = new Point(Constants.startWhiteX - Constants.startBlackX, Constants.startWhiteY - Constants.startBlackY);
         }
         
         this.isInPocket = false;
