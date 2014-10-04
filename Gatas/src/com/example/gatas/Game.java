@@ -128,7 +128,7 @@ public class Game extends View implements OnTouchListener {
     private void init()
     {
         Resources res = mContext.getResources();
-        Drawable myImage = res.getDrawable(R.drawable.my_image);
+        Drawable myImage = res.getDrawable(R.drawable.table);
         //background = new Paint();
         //background.setStyle(Paint.Style.FILL_AND_STROKE);
         //background.setColor(0xffcfffff);
