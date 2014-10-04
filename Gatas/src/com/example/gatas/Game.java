@@ -83,6 +83,11 @@ public class Velocity
      else{
          yVel = -yVel;
      }
+     
+     public void collisionWithPocket(){
+     	xVel = 0;
+     	yVel = 0;
+     }
     }
     
 }
