@@ -67,8 +67,13 @@ public class velocity
         
     }
     
-    public void collisionWithWall(){
-        
+    public void collisionWithWall(boolean isVertWall){
+     if(isVertWall){
+         xVel = -xVel;
+     }   
+     else{
+         yVel = -yVel;
+     }
     }
     
 }
