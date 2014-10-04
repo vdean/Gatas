@@ -39,7 +39,6 @@ public class AddEvent extends Activity implements OnClickListener {
 		gc.set(year, month, day);
 		long oldMillis = gc.getTimeInMillis();
 		Log.d("Mine", "Millis is: " + oldMillis);
-		ClientDB.insert(this, event, month, day, year, oldMillis);
 		Log.d("Mine", "Date being saved: " + month + " " + day + " " + year);
 		Intent outData = new Intent();
 		outData.putExtra("event", event);

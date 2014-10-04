@@ -72,7 +72,6 @@ public class MainActivity extends Activity {
 		Log.d("Mine","in remove");
 		String eraseThis = myEvents.get(_index).get("name");
 		myEvents.remove(_index);
-		ClientDB.delete(this, eraseThis);
 		Log.d("Mine","Earse: "+ eraseThis);
 		adapter.notifyDataSetChanged();
 	}
@@ -139,7 +138,6 @@ public class MainActivity extends Activity {
 	public void buildData()
 	{
 		myEvents.clear();
-		Cursor cursor = ClientDB.getEvent(this);
 		if (cursor==null)
 		{
 			Log.d("Mine","Nothing in database");

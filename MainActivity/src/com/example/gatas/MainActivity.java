@@ -28,13 +28,8 @@ public class MainActivity extends Activity implements OnClickListener {
     	findViewById(R.id.sketch).setDrawingCacheEnabled(false);
     	ByteArrayOutputStream bos = new ByteArrayOutputStream();
     	screenshot.compress(Bitmap.CompressFormat.PNG, 100, bos);
-    	ClientDB.insertDrawing(this, bos.toByteArray(), 1, 1, "Bob");
 	}
 
-	public void onPhraseResult(){
-    	ClientDB.insertPhrase(this, "hi", 1, 1, "Bob");
-	}
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
