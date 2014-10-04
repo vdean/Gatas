@@ -112,7 +112,7 @@ public class Velocity
     
 }
 
-public class Game extends View implements OnTouchListener {
+/*public class Game extends View implements OnTouchListener {
 
     private float width;    // width of one tile
     private float height;   // height of one tile
@@ -206,4 +206,4 @@ public class Game extends View implements OnTouchListener {
         invalidate();
         return true; // indicate event was handled
     }
-}
+}*/
