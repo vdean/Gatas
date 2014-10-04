@@ -42,6 +42,7 @@ class Point
 public class Ball
 {
     Point position;
+    Point distance;
     Velocity velocity;
     float radius;
     boolean isBlack;
@@ -51,7 +52,8 @@ public class Ball
     long lastTimeUpdatedMs;
     
     public Ball(boolean black) {
-        this.position = new Point(Constants.startX, Constants.startY); // Define startx starty
+        this.position = new Point(Constants.startWhiteX, Constants.startWhiteY); // Define startx starty
+        this.distance = new Point(Constants.startWhiteX - Constants.startBlackX, Constants.startWhiteY - Constants.startBlackY)
         this.velocity = new Velocity(0.0,0.0);
         this.radius = Constants.radius;
         this.isBlack = black;
