@@ -3,7 +3,7 @@ package com.example.gatas;
 import java.io.ByteArrayOutputStream;
 
 import com.example.gatas.R;
-import com.example.gatas.Game;
+import com.example.gatas.Sketch;
 
 
 import android.os.Bundle;
@@ -34,7 +34,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		Game view = (Game) findViewById(R.id.sketch);
+		Sketch view = (Sketch) findViewById(R.id.sketch);
 		Button submit = (Button) findViewById(R.id.submit);
 		Button clear = (Button) findViewById(R.id.clear);
 		view.setOnTouchListener(view);
