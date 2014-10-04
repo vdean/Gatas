@@ -46,7 +46,6 @@ class Point
 public class Ball
 {
     Point position;
-    Point distance;
     Velocity velocity;
     float radius;
     boolean isBlack;
@@ -91,7 +90,9 @@ public class Velocity
      
     }
     
-    public void collisionWithBall(float otherXVel, float otherYVel, point distance, point otherDistance){
+    public void collisionWithBall(float otherXVel, float otherYVel){
+        Point distance = new point (xVel - otherXVel, yVel - otherYVel);
+        Point otherDistance = new point (otherXVel - xVel, otherYVel - yVel);
         float cosTheta = (distance.x * xVel + distance.y * yVel)/(sqrt(distance.x^2 + distance.y^2) * sqrt(xVel^2 + yVel^2)));
         float cosPhi = (otherDistance.x * otherXVel + otherDistance.y * otherYVel)/(sqrt(otherDistance.x^2 + otherDistance.y^2) * sqrt(otherXVel^2 + otherYVel^2)));
     
