@@ -14,13 +14,6 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         
-        <provider android:exported="true" android:authorities="com.example.gatas" android:name="com.example.gatas.EventContentProvider"/>
-        <activity android:label="@string/app_name" android:name="com.example.gatasprovider.MainActivity">
-            <intent-filter><action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>              
-        </activity>
-        
         <activity
             android:name="com.example.gatas.MainActivity"
             android:label="@string/app_name" >
