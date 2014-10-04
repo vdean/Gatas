@@ -17,5 +17,9 @@ public interface Constants extends BaseColumns{
     public static final String AUTHORITY="com.example.meg.gatas";
     public static final Uri EVENT_CONTENT_URI = Uri.parse("content://"+ 
                 AUTHORITY + "/" + EVENT_TABLE);
+                
+    public static final point pocket1= new point();
+    public static final point pocket1= new point();
+    public static final point pocket1= new point();
 
 }
