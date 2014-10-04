@@ -53,9 +53,24 @@ public class Ball
 }
 public class velocity
 {
+    
+    float xVel;
+    float yVel;
+    
     public velocity(float initx, float inity){
+     xVel = initx;
+     yVel = inity;
+     
+    }
+    
+    public void collisionWithBall(float otherXVel, float otherYVel){
         
     }
+    
+    public void collisionWithWall(){
+        
+    }
+    
 }
 
 public class Sketch extends View implements OnTouchListener {
