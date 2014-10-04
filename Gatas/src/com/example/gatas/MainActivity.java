@@ -29,7 +29,7 @@ public class MainActivity extends Activity implements OnClickListener {
     	ByteArrayOutputStream bos = new ByteArrayOutputStream();
     	screenshot.compress(Bitmap.CompressFormat.PNG, 100, bos);
 	}
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -82,13 +82,15 @@ public class MainActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		Button b = (Button)v;
 		String text = b.getText().toString();
-//	    switch (text){
-//	    case "Clear":
-//	    	break;
-//	    case "Submit":
-//	    	break;	    
-//	    default:
-//	    	break;
+
+	    if (text.equals("Clear")){
+	    	return;
+	    	
+	    }
+	    else if (text.equals("Submit")){
+	    	onDrawingResult();
+	    }
+
 	    }
 
 	}

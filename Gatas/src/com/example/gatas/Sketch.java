@@ -24,6 +24,40 @@ class Data
     }
 }
 
+
+public class Ball
+{
+    point Position;
+    velocity velocity;
+    float Radius;
+    boolean IsBlack;
+    boolean IsBotSide;
+    boolean IsInPocket;
+    boolean IsPickedUp;
+    
+    public Ball(boolean black){
+        Position = new point(Constants.startx, Constants.starty); // Define startx starty
+        Velocity = new velocity(0.0,0.0);
+        Radius = Constants.radius;
+        IsBlack = black;
+        IsBotSide = true;
+        
+        if(IsBlack){
+            IsBotSide = false;
+        }
+        
+        IsInPocket = false;
+        IsPicketUp = false;
+    }
+    
+}
+public class velocity
+{
+    public velocity(float initx, float inity){
+        
+    }
+}
+
 public class Sketch extends View implements OnTouchListener {
 
     private float width;    // width of one tile
@@ -36,7 +70,7 @@ public class Sketch extends View implements OnTouchListener {
     {
         background = new Paint();
         //background.setStyle(Paint.Style.FILL_AND_STROKE);
-        background.setColor(0xff33cc33);
+        background.setColor(0xffcfffff);
 
         translucentRedPen = new Paint();
         translucentRedPen.setColor(getResources().getColor(R.color.translucentRedPen));
@@ -77,28 +111,7 @@ public class Sketch extends View implements OnTouchListener {
         // Draw the background...
         width = getWidth();
         height = getHeight();
-        float centerX = width/2;
-        float centerY = height/2;
-        float radius = Math.min(width, height)/2;
-        float delta = 10;
 
-        canvas.drawRect(0, 0, width, height, background);
-
-//        canvas.drawCircle(centerX, centerY, radius,  bluePen);
-        float radius2 = radius-delta;
-//        canvas.drawCircle(centerX, centerY, radius2,  bluePen);
-        canvas.drawLine(centerX-radius2, centerY, centerX+radius2 ,centerY , bluePen);
-        canvas.drawLine(centerX, centerY-radius2, centerX ,centerY+radius2 , bluePen);
-
-//        canvas.drawText("abcdefghijklmnopqrstuvwxyz", centerX,centerY, bluePen);
-
-        canvas.save();
-//        canvas.rotate(-90, centerX, centerY);
-//        canvas.drawText("abcdefghijklmnopqrstuvwxyz", centerX,centerY, bluePen);
-        canvas.restore();        
-
-//        canvas.drawCircle(centerX, centerY, radius,  translucentRedPen);
-        //For Drawing on screen with your finger
         for (int i=1; i < pointList.size(); i++)
         {
             Data d1 = pointList.get(i-1);
