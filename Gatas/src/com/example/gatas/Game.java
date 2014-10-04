@@ -56,7 +56,7 @@ public class Ball
     }
     
 }
-public class velocity
+public class Velocity
 {
     
     float xVel;
@@ -68,8 +68,12 @@ public class velocity
      
     }
     
-    public void collisionWithBall(float otherXVel, float otherYVel){
-        
+    public void collisionWithBall(float otherXVel, float otherYVel, point distance, point otherDistance){
+        float cosTheta = (distance.x * xVel + distance.y * yVel)/(sqrt(distance.x^2 + distance.y^2) * sqrt(xVel^2 + yVel^2)));
+        float cosPhi = (otherDistance.x * otherXVel + otherDistance.y * otherYVel)/(sqrt(otherDistance.x^2 + otherDistance.y^2) * sqrt(otherXVel^2 + otherYVel^2)));
+    
+    	xVel = otherXVel * cosPhi/cosTheta;
+    	yVel = otherYVel * cosPhi/cosTheta;
     }
     
     public void collisionWithWall(boolean isVertWall){
