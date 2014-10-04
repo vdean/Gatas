@@ -121,15 +121,17 @@ public class Game extends View implements OnTouchListener {
 
     private float width;    // width of one tile
     private float height;   // height of one tile
-    Paint background, translucentRedPen, bluePen;
+    Paint translucentRedPen, bluePen;
 
     ArrayList<Point> pointList = new ArrayList<Point>();   
 
     private void init()
     {
-        background = new Paint();
+        Resources res = mContext.getResources();
+        Drawable myImage = res.getDrawable(R.drawable.my_image);
+        //background = new Paint();
         //background.setStyle(Paint.Style.FILL_AND_STROKE);
-        background.setColor(0xffcfffff);
+        //background.setColor(0xffcfffff);
 
         translucentRedPen = new Paint();
         translucentRedPen.setColor(getResources().getColor(R.color.translucentRedPen));
@@ -140,8 +142,8 @@ public class Game extends View implements OnTouchListener {
         bluePen.setTextSize(24);
         bluePen.setTextScaleX(.75f);
         bluePen.setTextAlign(Paint.Align.CENTER); // Try LEFT and RIGHT
-        //FontMetrics fm = bluePen.getFontMetrics();
-        //float textHeight = fm.descent + fm.ascent;       
+        FontMetrics fm = bluePen.getFontMetrics();
+        float textHeight = fm.descent + fm.ascent;       
 
         //setFocusable(true);
         //setFocusableInTouchMode(true);
