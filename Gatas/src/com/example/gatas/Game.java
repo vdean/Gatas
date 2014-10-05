@@ -8,6 +8,7 @@ import com.example.gatas.R;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Paint.FontMetrics;
 import android.os.SystemClock;
 //import android.graphics.Paint.FontMetrics;
 import android.util.AttributeSet;
@@ -43,7 +44,7 @@ class Point
     }
 }
 
-public class Ball
+class Ball
 {
     Point position;
     Velocity velocity;
@@ -55,8 +56,8 @@ public class Ball
     long lastTimeUpdatedMs;
     
     public Ball(boolean black) {
-        this.position = new Point(Constants.startWhiteX, Constants.startWhiteY); // Define startx starty
-        this.velocity = new Velocity(0.0,0.0);
+        //this.position = new Point(Constants.startWhiteX, Constants.startWhiteY); // Define startx starty
+        this.velocity = new Velocity(0.0f,0.0f);
         this.radius = Constants.radius;
         this.isBlack = black;
         this.isBotSide = true;
@@ -78,7 +79,7 @@ public class Ball
     }
 }
 
-public class Velocity
+class Velocity
 {
     
     float xVel;
@@ -91,13 +92,13 @@ public class Velocity
     }
     
     public void collisionWithBall(float otherXVel, float otherYVel){
-        Point distance = new point (xVel - otherXVel, yVel - otherYVel);
-        Point otherDistance = new point (otherXVel - xVel, otherYVel - yVel);
-        float cosTheta = (distance.x * xVel + distance.y * yVel)/(sqrt(distance.x^2 + distance.y^2) * sqrt(xVel^2 + yVel^2)));
-        float cosPhi = (otherDistance.x * otherXVel + otherDistance.y * otherYVel)/(sqrt(otherDistance.x^2 + otherDistance.y^2) * sqrt(otherXVel^2 + otherYVel^2)));
+        Point distance = new Point (xVel - otherXVel, yVel - otherYVel);
+        Point otherDistance = new Point (otherXVel - xVel, otherYVel - yVel);
+        //float cosTheta = (distance.x * xVel + distance.y * yVel)/(sqrt(distance.x^2 + distance.y^2) * sqrt(xVel^2 + yVel^2)));
+        //float cosPhi = (otherDistance.x * otherXVel + otherDistance.y * otherYVel)/(sqrt(otherDistance.x^2 + otherDistance.y^2) * sqrt(otherXVel^2 + otherYVel^2)));
     
-    	xVel = otherXVel * cosPhi/cosTheta;
-    	yVel = otherYVel * cosPhi/cosTheta;
+    	//xVel = otherXVel * cosPhi/cosTheta;
+    	//yVel = otherYVel * cosPhi/cosTheta;
     }
     
     public void collisionWithWall(boolean isVertWall){
@@ -107,11 +108,11 @@ public class Velocity
      else{
          yVel = -yVel;
      }
-     
+    }
      public void collisionWithPocket(){
      	xVel = 0;
      	yVel = 0;
-     }
+     
     }
     
 }
@@ -127,8 +128,6 @@ public class Game extends View implements OnTouchListener {
 
     private void init()
     {
-        Resources res = mContext.getResources();
-        Drawable myImage = res.getDrawable(R.drawable.table);
         //background = new Paint();
         //background.setStyle(Paint.Style.FILL_AND_STROKE);
         //background.setColor(0xffcfffff);
