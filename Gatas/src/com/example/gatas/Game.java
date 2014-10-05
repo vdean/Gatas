@@ -1,14 +1,15 @@
 package com.example.gatas;
 
-
 import java.util.ArrayList;
 
 import com.example.gatas.R;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Paint.FontMetrics;
+import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
 //import android.graphics.Paint.FontMetrics;
 import android.util.AttributeSet;
@@ -56,7 +57,11 @@ class Ball
     long lastTimeUpdatedMs;
     
     public Ball(boolean black) {
-        //this.position = new Point(Constants.startWhiteX, Constants.startWhiteY); // Define startx starty
+    	if (black) {
+    		this.position = new Point(Constants.startBlackX, Constants.startBlackY);
+    	} else {
+    		this.position = new Point(Constants.startWhiteX, Constants.startWhiteY);
+    	}
         this.velocity = new Velocity(0.0f,0.0f);
         this.radius = Constants.radius;
         this.isBlack = black;
@@ -92,13 +97,13 @@ class Velocity
     }
     
     public void collisionWithBall(float otherXVel, float otherYVel){
-        Point distance = new Point (xVel - otherXVel, yVel - otherYVel);
-        Point otherDistance = new Point (otherXVel - xVel, otherYVel - yVel);
-        //float cosTheta = (distance.x * xVel + distance.y * yVel)/(sqrt(distance.x^2 + distance.y^2) * sqrt(xVel^2 + yVel^2)));
-        //float cosPhi = (otherDistance.x * otherXVel + otherDistance.y * otherYVel)/(sqrt(otherDistance.x^2 + otherDistance.y^2) * sqrt(otherXVel^2 + otherYVel^2)));
+        Point distance = new Point(xVel - otherXVel, yVel - otherYVel);
+        Point otherDistance = new Point(otherXVel - xVel, otherYVel - yVel);
+        float cosTheta = (distance.x * xVel + distance.y * yVel)/(FloatMath.sqrt(FloatMath.pow(distance.x,2) + FloatMath.pow(distance.y,2)) * FloatMath.sqrt(FloatMath.pow(xVel,2) + FloatMath.pow(yVel,2)));
+        float cosPhi = (otherDistance.x * otherXVel + otherDistance.y * otherYVel)/(FloatMath.sqrt(FloatMath.pow(otherDistance.x,2) + FloatMath.pow(otherDistance.y,2) * FloatMath.sqrt(FloatMath.pow(otherXVel,2) + FloatMath.pow(otherYVel,2))));
     
-    	//xVel = otherXVel * cosPhi/cosTheta;
-    	//yVel = otherYVel * cosPhi/cosTheta;
+    	xVel = otherXVel * cosPhi/cosTheta;
+    	yVel = otherYVel * cosPhi/cosTheta;
     }
     
     public void collisionWithWall(boolean isVertWall){
@@ -109,10 +114,10 @@ class Velocity
          yVel = -yVel;
      }
     }
-     public void collisionWithPocket(){
+     
+    public void collisionWithPocket() {
      	xVel = 0;
      	yVel = 0;
-     
     }
     
 }
@@ -128,6 +133,7 @@ public class Game extends View implements OnTouchListener {
 
     private void init()
     {
+    
         //background = new Paint();
         //background.setStyle(Paint.Style.FILL_AND_STROKE);
         //background.setColor(0xffcfffff);
@@ -179,6 +185,44 @@ public class Game extends View implements OnTouchListener {
             canvas.drawLine(d1.x, d1.y, d2.x, d2.y, bluePen);
         }
 
+    }
+
+    public boolean touch(view v, MotionEvent event, Ball whiteBall){
+        float x = event.getX();
+        float y = event.getY();
+        Point distance =  new Point(x - whiteBall.x, y - whiteBall.y);
+        float euclidDistance = FloatMath.sqrt(FloatMath.pow(distance.x, 2) + FloatMath.pow(distance.y, 2));
+        
+        if (Constants.radius*3 >= euclidDistance ){
+            return true;
+        }
+        return false;
+        
+    }
+    
+    public Ball touchSwipe(view v, MotionEvent event, Ball whiteBall){
+        float x = event.getX();
+	float xInit = x;
+        float y = event.getY();
+	float yInit = y;
+	long startTime = SystemClock.elapsedRealTime();
+	float xFinal = 0.0f;
+	float yFinal = 0.0f;
+
+	switch (event.getAction & MotionEvent.ACTION_MASK) {
+	case MotionEvent.ACTION_POINTER_UP:
+		xFinal = x;
+		yFinal = y;
+	}
+	invalidate();
+        
+	long finalTime = SystemClock.elapsedRealTime();
+	
+	whiteBall.Velocity.xVel = (xFinal - xInit)/(finalTime - startTime);
+	whiteBall.Velocity.yVel = (yFinal - yInit)/(finalTime - startTime);
+	whiteBall.position.x = xFinal;
+	whiteBall.position.y = yFinal;
+        return whiteBall;
     }
 
     public boolean onTouch(View v, MotionEvent event) {     
